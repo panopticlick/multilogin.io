@@ -29,19 +29,25 @@
 - **状态**: ✅ 已创建并绑定
 
 ### 5. Cloudflare Pages
-- **名称**: multilogin-web
-- **项目 ID**: d0b2c51b-7586-40d8-a759-43b9d649ac55
-- **默认 URL**: https://multilogin-web.pages.dev
-- **最新部署**: https://b0d1f801.multilogin-web.pages.dev
-- **状态**: ✅ 已创建项目，文件已上传（1936个文件）
-- **注意**: Next.js Pages 可能需要额外配置才能正常运行
+- **状态**: ⚠️ 已禁用（Next.js 16 不兼容）
+- **原因**: @cloudflare/next-on-pages 仅支持 Next.js ≤15.5.2
+- **替代方案**: ✅ 已部署到 Vercel（见下方）
 
-### 6. GitHub Actions CI/CD
+### 6. Vercel (前端应用)
+- **项目**: multilogin.io
+- **团队**: chrsis-projects
+- **最新部署**: https://multilogin-kvxoqhwse-chrsis-projects.vercel.app
+- **Dashboard**: https://vercel.com/chrsis-projects/multilogin.io
+- **状态**: ✅ 已部署成功（71个页面）
+- **环境变量**: ✅ 已配置（NEXT_PUBLIC_API_URL, AUTH_SECRET, NEXTAUTH_SECRET, NEXTAUTH_URL）
+- **注意**: 需要禁用 Vercel Protection 或配置自定义域名才能公开访问（详见 VERCEL_DEPLOYMENT.md）
+
+### 7. GitHub Actions CI/CD
 - **CI 工作流**: ✅ 通过 (Lint, TypeCheck, Build, Tests)
-- **Deploy 工作流**: ✅ 通过 (Worker + Pages)
-- **自动部署**: ✅ 配置完成，推送到 main 分支自动部署
+- **Deploy 工作流**: ✅ Worker 部署成功（Pages 已禁用）
+- **自动部署**: ✅ 推送到 main 分支自动部署 Worker
 
-### 7. 代码质量
+### 8. 代码质量
 - **TypeScript**: ✅ 类型检查通过
 - **ESLint**: ✅ 0 errors, 45 warnings (内容页面)
 - **构建**: ✅ 71 个页面生成成功
@@ -50,21 +56,13 @@
 
 ## ⚠️ 待完成 / 注意事项
 
-### 1. Next.js on Cloudflare Pages
-**状态**: ⚠️ 需要配置  
-**原因**: Cloudflare Pages 对 Next.js 的支持需要使用 `@cloudflare/next-on-pages` 适配器  
+### 1. Vercel Protection (必须完成)
+**状态**: ⚠️ 需要禁用或配置域名
+**原因**: 项目启用了 Vercel Authentication，导致 401 错误
 **解决方案**:
-```bash
-npm install --save-dev @cloudflare/next-on-pages
-```
-然后更新 `next.config.ts`:
-```ts
-const withCloudflare = require('@cloudflare/next-on-pages/next-dev');
-
-module.exports = withCloudflare({
-  // 现有配置
-});
-```
+- **方案 1**: 在 Vercel Dashboard → Settings → Deployment Protection 中禁用保护
+- **方案 2**: 配置自定义域名（不受 Protection 影响）
+- **详细说明**: 参见 `VERCEL_DEPLOYMENT.md`
 
 ### 2. R2 Bucket (可选)
 **状态**: ⚠️ 需要手动启用  
@@ -74,32 +72,31 @@ module.exports = withCloudflare({
 3. 取消注释 `worker/wrangler.toml` 中的 R2 配置
 
 ### 3. 自定义域名 (可选)
-**状态**: ⚠️ 需要添加域名  
+**状态**: ⚠️ 需要添加域名
 **步骤**:
 1. 将 `multilogin.io` 添加到 Cloudflare 账户
 2. 配置 DNS 记录
 3. 取消注释 `worker/wrangler.toml` 中的 routes 配置
 
 ### 4. OAuth 配置 (可选)
-**状态**: ⚠️ 需要配置  
-**提供商**: Google, GitHub  
+**状态**: ⚠️ 需要配置
+**提供商**: Google, GitHub
 **步骤**:
 1. 创建 OAuth 应用
-2. 在 `.env.local` 中设置 client ID 和 secret
+2. 在 Vercel 中添加环境变量（GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET）
 3. 配置回调 URL
 
-### 5. 环境变量
-**Web 应用 (.env.local)**:
+### 5. 环境变量 (Vercel)
+**已配置**:
 ```env
-# Worker API URL (已部署)
 NEXT_PUBLIC_API_URL=https://multilogin-api.panopticlick.workers.dev
+AUTH_SECRET=[已加密]
+NEXTAUTH_SECRET=[已加密]
+NEXTAUTH_URL=https://multilogin-io.vercel.app
+```
 
-# NextAuth 配置
-AUTH_SECRET=需要生成
-NEXTAUTH_SECRET=需要生成
-NEXTAUTH_URL=https://multilogin-web.pages.dev
-
-# OAuth (可选)
+**待添加（可选）**:
+```env
 GOOGLE_CLIENT_ID=待配置
 GOOGLE_CLIENT_SECRET=待配置
 GITHUB_CLIENT_ID=待配置
@@ -125,18 +122,18 @@ GITHUB_CLIENT_SECRET=待配置
 
 - **GitHub 仓库**: https://github.com/panopticlick/multilogin.io
 - **Worker API**: https://multilogin-api.panopticlick.workers.dev
-- **Pages (主域名)**: https://multilogin-web.pages.dev
-- **Pages (最新部署)**: https://b0d1f801.multilogin-web.pages.dev
+- **Vercel Dashboard**: https://vercel.com/chrsis-projects/multilogin.io
+- **Vercel Deployment**: https://multilogin-kvxoqhwse-chrsis-projects.vercel.app (需要禁用 Protection)
 - **Cloudflare Dashboard**: https://dash.cloudflare.com/201945e73bc3a4f6f77de30504c0687f
 
 ## 📝 下一步建议
 
-1. **修复 Pages 配置**: 安装并配置 `@cloudflare/next-on-pages`
-2. **配置环境变量**: 设置 NextAuth secrets
-3. **测试 API**: 访问 Worker API 端点进行测试
-4. **设置监控**: 配置 Cloudflare 监控和告警
-5. **启用 R2** (如需要): 用于会话存储
-6. **添加自定义域名** (可选): multilogin.io
+1. **禁用 Vercel Protection** (必须): 在 Dashboard → Settings → Deployment Protection 中禁用
+2. **测试网站**: 禁用 Protection 后访问 Vercel URL
+3. **配置自定义域名** (可选): 在 Vercel 中添加 multilogin.io
+4. **配置 OAuth** (可选): 添加 Google/GitHub OAuth 凭证
+5. **启用 R2** (可选): 用于会话存储
+6. **设置监控**: 配置 Vercel Analytics 和 Cloudflare 监控
 
 ## 🎯 核心功能状态
 
@@ -150,7 +147,7 @@ GITHUB_CLIENT_SECRET=待配置
 | 密码加密 | ✅ 已实现 |
 | Rate Limiting | ✅ 已配置 |
 | Cron 任务 | ✅ 已配置 |
-| 前端应用 | ⚠️ 需要修复 Pages 配置 |
+| 前端应用 | ✅ Vercel 已部署 (需禁用 Protection) |
 
 ## ✨ 优化成果
 
