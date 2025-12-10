@@ -21,33 +21,33 @@ routes = [{ pattern = "api.multilogin.io", custom_domain = true }]
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "multilogin-db"
-database_id = "aee01ab5-50f7-4688-ad96-e003c1f9ea4a"
+database_id = "45f371a0-ee5a-4449-9d2c-f87920c7649d"
 migrations_dir = "migrations"
 
-[[env.production.r2_buckets]]
-binding = "R2"
-bucket_name = "multilogin-sessions"
+# [[env.production.r2_buckets]]
+# binding = "R2"
+# bucket_name = "multilogin-sessions"
 
 [[env.production.kv_namespaces]]
 binding = "KV"
-id = "3e08416703cb4d95bd905277996acfe4"
+id = "a865c3fe71c643d5a408faa521c3a3b3"
 
 # D1 Database
 [[d1_databases]]
 binding = "DB"
 database_name = "multilogin-db"
-database_id = "aee01ab5-50f7-4688-ad96-e003c1f9ea4a"
+database_id = "45f371a0-ee5a-4449-9d2c-f87920c7649d"
 migrations_dir = "migrations"
 
-# R2 Storage for session data
-[[r2_buckets]]
-binding = "R2"
-bucket_name = "multilogin-sessions"
+# R2 Storage for session data (optional - requires R2 to be enabled in dashboard)
+# [[r2_buckets]]
+# binding = "R2"
+# bucket_name = "multilogin-sessions"
 
 # KV Namespace for rate limiting and caching
 [[kv_namespaces]]
 binding = "KV"
-id = "3e08416703cb4d95bd905277996acfe4"
+id = "a865c3fe71c643d5a408faa521c3a3b3"
 
 # Environment variables (set via wrangler secret)
 # JWT_SECRET - Secret for JWT signing
