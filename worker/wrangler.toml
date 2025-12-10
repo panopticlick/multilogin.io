@@ -11,12 +11,12 @@ name = "multilogin-api-dev"
 # Staging
 [env.staging]
 name = "multilogin-api-staging"
-routes = [{ pattern = "api-staging.multilogin.io", custom_domain = true }]
+# routes = [{ pattern = "api-staging.multilogin.io", custom_domain = true }]
 
 # Production
 [env.production]
 name = "multilogin-api"
-routes = [{ pattern = "api.multilogin.io", custom_domain = true }]
+# routes = [{ pattern = "api.multilogin.io", custom_domain = true }]
 
 [[env.production.d1_databases]]
 binding = "DB"
