@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Multilogin.io
 
-## Getting Started
+Cloud-synchronized browser profile management platform built with Next.js 16 and Cloudflare Workers.
 
-First, run the development server:
+## Architecture
+
+- **Next.js 16 Web App** (`src/`) - Marketing site and dashboard
+- **Cloudflare Worker API** (`worker/`) - Hono-based backend with D1/R2/KV
+- **Desktop Client** (`packages/client/`) - Puppeteer-based CLI for launching browser profiles
+
+## Features
+
+- 🔒 **Free Forever** - No paywalls, no subscriptions
+- 🌐 **Browser Profiles** - Manage multiple isolated browser sessions
+- 🔐 **End-to-End Encryption** - Proxy passwords encrypted with AES-256-GCM
+- 🌍 **Proxy Management** - HTTP, SOCKS5, rotating proxies
+- 👥 **Team Collaboration** - Share profiles with team members
+- 📊 **Time Machine** - Profile snapshot and restore
+- 🤖 **API Access** - RESTful API with authentication
+- 📜 **Audit Logs** - Track all profile and team activities
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js 20+
+- npm 10+
+- Cloudflare account
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+cd worker && npm install
+
+# Set up environment variables
+cp .env.example .env.local
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Start worker dev server
+cd worker && npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Deployment is automated via GitHub Actions when pushing to `main` branch.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### GitHub Secrets Required
 
-## Learn More
+- `CLOUDFLARE_API_TOKEN` - Cloudflare API token with Workers and Pages permissions
+- `CLOUDFLARE_ACCOUNT_ID` - Your Cloudflare account ID
 
-To learn more about Next.js, take a look at the following resources:
+### Manual Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Deploy Worker
+cd worker
+npm run deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Deploy Web to Cloudflare Pages
+npm run build
+npx wrangler pages deploy .next --project-name=multilogin-web
+```
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All rights reserved.

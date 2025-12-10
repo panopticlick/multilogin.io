@@ -1,0 +1,69 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#a855f7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Accent circles -->
+  <circle cx="100" cy="100" r="200" fill="url(#accentGradient)" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="250" fill="url(#accentGradient)" opacity="0.08"/>
+
+  <!-- Logo/Icon -->
+  <g transform="translate(540, 180)">
+    <rect x="0" y="0" width="120" height="120" rx="24" fill="url(#accentGradient)"/>
+    <path d="M30 60 L60 30 L90 60 L60 90 Z" fill="white" opacity="0.9"/>
+    <circle cx="60" cy="60" r="15" fill="white"/>
+  </g>
+
+  <!-- Main title -->
+  <text x="600" y="360" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="white" text-anchor="middle">
+    Multilogin.io
+  </text>
+
+  <!-- Tagline -->
+  <text x="600" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#a1a1aa" text-anchor="middle">
+    Free Browser Profile Manager with Cloud Sync
+  </text>
+
+  <!-- Features -->
+  <g transform="translate(300, 480)">
+    <rect x="0" y="0" width="140" height="36" rx="18" fill="rgba(99, 102, 241, 0.2)" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1"/>
+    <text x="70" y="24" font-family="system-ui, sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Free Forever</text>
+  </g>
+  <g transform="translate(460, 480)">
+    <rect x="0" y="0" width="140" height="36" rx="18" fill="rgba(99, 102, 241, 0.2)" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1"/>
+    <text x="70" y="24" font-family="system-ui, sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Cloud Sync</text>
+  </g>
+  <g transform="translate(620, 480)">
+    <rect x="0" y="0" width="140" height="36" rx="18" fill="rgba(99, 102, 241, 0.2)" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1"/>
+    <text x="70" y="24" font-family="system-ui, sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Team Ready</text>
+  </g>
+  <g transform="translate(780, 480)">
+    <rect x="0" y="0" width="140" height="36" rx="18" fill="rgba(99, 102, 241, 0.2)" stroke="rgba(99, 102, 241, 0.3)" stroke-width="1"/>
+    <text x="70" y="24" font-family="system-ui, sans-serif" font-size="14" fill="#a1a1aa" text-anchor="middle">Encrypted</text>
+  </g>
+
+  <!-- URL -->
+  <text x="600" y="580" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="url(#textGradient)" text-anchor="middle">
+    multilogin.io
+  </text>
+</svg>

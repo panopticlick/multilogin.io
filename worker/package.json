@@ -1,0 +1,34 @@
+{
+  "name": "multilogin-api",
+  "version": "1.0.0",
+  "description": "Multilogin.io API - Cloudflare Worker",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production",
+    "db:migrate": "wrangler d1 migrations apply multilogin-db",
+    "db:migrate:local": "wrangler d1 migrations apply multilogin-db --local",
+    "db:studio": "wrangler d1 studio multilogin-db",
+    "types": "wrangler types",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "format": "prettier --write src",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "hono": "^4.3.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240512.0",
+    "@types/node": "^20.12.0",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0",
+    "vitest": "4.0.15",
+    "wrangler": "^3.57.0"
+  }
+}

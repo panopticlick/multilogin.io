@@ -1120,127 +1120,19 @@ Get team activity/audit log.
 
 ## Billing
 
-### Get Subscription
-
-#### `GET /api/billing/subscription`
-
-Get current subscription details.
-
-**Response**
-
-```json
-{
-  "plan": "team",
-  "status": "active",
-  "current_period_start": 1701234567890,
-  "current_period_end": 1703826567890,
-  "cancel_at_period_end": false,
-  "payment_method": {
-    "type": "card",
-    "brand": "visa",
-    "last4": "4242"
-  }
-}
-```
-
----
-
-### Create Checkout Session
-
-#### `POST /api/billing/checkout`
-
-Create a Stripe checkout session for plan upgrade.
-
-**Request Body**
-
-```json
-{
-  "plan": "pro",
-  "successUrl": "https://multilogin.io/dashboard/billing?success=true",
-  "cancelUrl": "https://multilogin.io/dashboard/billing?canceled=true"
-}
-```
-
-**Response**
-
-```json
-{
-  "sessionId": "cs_test_a1b2c3...",
-  "url": "https://checkout.stripe.com/..."
-}
-```
-
----
-
-### Create Portal Session
-
-#### `POST /api/billing/portal`
-
-Create a Stripe customer portal session for managing subscription.
-
-**Request Body**
-
-```json
-{
-  "returnUrl": "https://multilogin.io/dashboard/billing"
-}
-```
-
-**Response**
-
-```json
-{
-  "url": "https://billing.stripe.com/..."
-}
-```
-
----
-
-### Get Usage
-
-#### `GET /api/billing/usage`
-
-Get current billing period usage.
-
-**Response**
-
-```json
-{
-  "period": {
-    "start": 1701234567890,
-    "end": 1703826567890
-  },
-  "usage": {
-    "profiles_created": 12,
-    "profiles_deleted": 2,
-    "launches": 456,
-    "syncs": 12345,
-    "api_calls": 67890,
-    "storage_bytes": 2147483648
-  },
-  "limits": {
-    "profiles": 200,
-    "storage_bytes": 10737418240
-  }
-}
-```
-
----
+All billing/subscription endpoints have been removed. The product is permanently free and `/api/billing/*` routes now return `404 Not Found`.
 
 ## Rate Limits
 
 | Plan | Rate Limit | Burst |
 |------|------------|-------|
-| Free | 30 req/min | 10 |
-| Pro | 100 req/min | 30 |
-| Team | 300 req/min | 100 |
-| Enterprise | Custom | Custom |
+| Free (only) | 300 req/min | 300 |
 
 Rate limit headers are included in all responses:
 
 ```http
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 95
+X-RateLimit-Limit: 300
+X-RateLimit-Remaining: 295
 X-RateLimit-Reset: 1701234600
 ```
 
@@ -1248,21 +1140,7 @@ X-RateLimit-Reset: 1701234600
 
 ## Webhooks (Incoming)
 
-### Stripe Webhook
-
-#### `POST /webhooks/stripe`
-
-Handle Stripe events for billing.
-
-**Headers**
-
-```http
-Stripe-Signature: t=1701234567,v1=abc123...
-```
-
-**Handled Events**
-
-- `customer.subscription.created`
+No external billing webhooks are required now that the service is free.
 - `customer.subscription.updated`
 - `customer.subscription.deleted`
 - `invoice.paid`

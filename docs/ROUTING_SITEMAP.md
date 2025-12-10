@@ -17,7 +17,7 @@ multilogin.io/
 ├── MARKETING SITE (Public)
 │   ├── /                              # Homepage
 │   ├── /features                      # Features overview
-│   ├── /pricing                       # Pricing plans
+│   ├── /pricing                       # Free-forever pledge
 │   ├── /download                      # Download desktop client
 │   ├── /blog                          # Blog listing
 │   │   └── /blog/[slug]              # Individual blog post
@@ -58,8 +58,7 @@ multilogin.io/
     │   ├── /dashboard/team/invite    # Invite member
     │   └── /dashboard/team/roles     # Role management
     ├── /dashboard/automation          # Automation (future)
-    ├── /dashboard/billing             # Billing & subscription
-    │   └── /dashboard/billing/invoices
+    ├── /dashboard/billing             # Free plan overview (no payments)
     ├── /dashboard/settings            # Account settings
     │   ├── /dashboard/settings/profile
     │   ├── /dashboard/settings/security
@@ -118,18 +117,17 @@ multilogin.io/
 
 ### `/pricing` - Pricing Page
 
-**Purpose:** Clear pricing, encourage upgrade
+**Purpose:** 宣告“永久免费”政策并说明包含的功能
 
 **Sections:**
-1. Plan comparison table
-2. Feature breakdown per plan
-3. FAQ about billing
-4. Enterprise contact form
-5. Money-back guarantee
+1. Free Forever 宣言与零付费说明
+2. 功能列表（全部开放，无限制）
+3. 常见问题（数据保留、速率限制、安全）
+4. 支持/联系入口
 
 **SEO:**
-- Title: "Pricing Plans - Free, Pro & Team | Multilogin.io"
-- Description: "Start free with 5 profiles. Upgrade to Pro ($12/mo) or Team ($29/mo) for more profiles, proxy pools, and team features."
+- Title: "Pricing - Free Forever | Multilogin.io"
+- Description: "Multilogin.io 现已永久免费，所有功能对团队开放，无需信用卡。"
 
 ---
 
@@ -417,14 +415,12 @@ multilogin.io/
 
 ---
 
-### `/dashboard/billing` - Billing
+### `/dashboard/billing` - Free Plan Overview
 
 **Components:**
-- Current plan display
-- Usage meters
-- Upgrade/downgrade buttons
-- Payment method
-- Invoice list
+- Free forever banner
+- Key capabilities recap
+- Support/contact CTA
 
 ---
 
@@ -569,7 +565,6 @@ const dashboardNav = [
 ];
 
 const dashboardFooterNav = [
-  { name: 'Billing', href: '/dashboard/billing', icon: CreditCard },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings }
 ];
 ```

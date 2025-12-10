@@ -1365,3 +1365,20 @@ jobs:
 2. Implement full API specification (`API_SPECIFICATION.md`)
 3. Add Stripe integration for billing
 4. Set up monitoring and alerting
+
+---
+
+## Fingerprint Policy Center (New)
+
+To keep browser fingerprints aligned with enterprise risk controls, the worker now exposes a policy engine backed by two new D1 tables:
+
+- `browser_versions`: authoritative snapshot of Chrome/Firefox/Safari/Edge release channels (stable/beta/dev) across platforms. Updates land via `/api/v1/fingerprint/policies/browser-versions` and cron jobs, so the rest of the platform can compare profile user agents against real release cadence.
+- `fingerprint_policies`: per-team guardrails (max versions behind for desktop/mobile, allowed browsers, notification channels, auto-upgrade toggles, etc.). Profiles optionally reference a policy through `profiles.fingerprint_policy_id`.
+
+Key Worker modules:
+
+- `services/fingerprint-policy.ts` – CRUD helpers, evaluation logic (reuses `parseUserAgentVersion` + `isOutdated`) and aggregation utilities to build a `BrowserVersions` map from D1 data instead of hard-coded constants.
+- `routes/fingerprint-policy.ts` – REST endpoints mounted under `/api/v1/fingerprint/policies`. Owners/admins can create/update/delete policies, list the browser-version registry, and evaluate a specific profile against a policy in real time.
+- Existing `routes/fingerprint-aging.ts` now defers to the registry for version lookups, keeping upgrade recommendations consistent across UI, CLI, and scheduled jobs.
+
+Every evaluation returns a structured payload (`status`, `versionsBehind`, `details`) referenced by the dashboard, CLI, and future notifications pipeline.

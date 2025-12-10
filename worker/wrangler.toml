@@ -1,0 +1,72 @@
+# Multilogin.io API - Cloudflare Worker Configuration
+name = "multilogin-api"
+main = "src/index.ts"
+compatibility_date = "2024-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Development
+[env.development]
+name = "multilogin-api-dev"
+
+# Staging
+[env.staging]
+name = "multilogin-api-staging"
+routes = [{ pattern = "api-staging.multilogin.io", custom_domain = true }]
+
+# Production
+[env.production]
+name = "multilogin-api"
+routes = [{ pattern = "api.multilogin.io", custom_domain = true }]
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "multilogin-db"
+database_id = "aee01ab5-50f7-4688-ad96-e003c1f9ea4a"
+migrations_dir = "migrations"
+
+[[env.production.r2_buckets]]
+binding = "R2"
+bucket_name = "multilogin-sessions"
+
+[[env.production.kv_namespaces]]
+binding = "KV"
+id = "3e08416703cb4d95bd905277996acfe4"
+
+# D1 Database
+[[d1_databases]]
+binding = "DB"
+database_name = "multilogin-db"
+database_id = "aee01ab5-50f7-4688-ad96-e003c1f9ea4a"
+migrations_dir = "migrations"
+
+# R2 Storage for session data
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "multilogin-sessions"
+
+# KV Namespace for rate limiting and caching
+[[kv_namespaces]]
+binding = "KV"
+id = "3e08416703cb4d95bd905277996acfe4"
+
+# Environment variables (set via wrangler secret)
+# JWT_SECRET - Secret for JWT signing
+# INTERNAL_WEBHOOK_SECRET - Optional internal webhook signing secret
+
+# Observability
+[observability]
+enabled = true
+
+# Cron Triggers for scheduled tasks
+[triggers]
+crons = [
+  "*/15 * * * *",  # Every 15 min - Enterprise health checks
+  "*/30 * * * *",  # Every 30 min - Team health checks
+  "0 * * * *",     # Every hour - Pro health checks
+  "0 3 * * *",     # Daily 3 AM - Free health checks + cleanup
+  "0 9 * * 1",     # Weekly Monday 9 AM - Aging notifications
+]
+
+# Tail consumers for logging
+# [[tail_consumers]]
+# service = "multilogin-logs"

@@ -160,8 +160,6 @@ owner
 | team:read | ✓ | ✓ | ✓ | ✓ |
 | team:manage | ✓ | ✓ | ✗ | ✗ |
 | team:delete | ✓ | ✗ | ✗ | ✗ |
-| billing:read | ✓ | ✓ | ✗ | ✗ |
-| billing:manage | ✓ | ✗ | ✗ | ✗ |
 | api-keys:create | ✓ | ✓ | ✗ | ✗ |
 
 ### Implementation
@@ -172,7 +170,6 @@ type Permission =
   | 'profiles:read' | 'profiles:create' | 'profiles:update'
   | 'profiles:delete' | 'profiles:launch'
   | 'team:read' | 'team:manage' | 'team:delete'
-  | 'billing:read' | 'billing:manage'
   | 'api-keys:create';
 
 const rolePermissions: Record<string, Permission[]> = {
@@ -181,7 +178,6 @@ const rolePermissions: Record<string, Permission[]> = {
     'profiles:read', 'profiles:create', 'profiles:update',
     'profiles:delete', 'profiles:launch',
     'team:read', 'team:manage',
-    'billing:read',
     'api-keys:create'
   ],
   member: [

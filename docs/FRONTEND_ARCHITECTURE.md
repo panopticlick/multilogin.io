@@ -1535,3 +1535,13 @@ GOOGLE_CLIENT_SECRET=xxx
 2. Implement all routes (`ROUTING_SITEMAP.md`)
 3. Add marketing content (`SEO_CONTENT_STRATEGY.md`)
 4. Configure analytics and monitoring
+
+### Dashboard Settings → Fingerprint Policy Manager
+
+The settings page now renders `components/dashboard/fingerprint-policy-manager.tsx`, which consumes the new `/api/v1/fingerprint/policies` endpoints via React Query. It surfaces:
+
+- Current policies, highlighting auto-upgrade state and lag thresholds
+- Dialog-driven creation/editing with validation
+- Inline evaluation against a given profile ID (uses the new evaluation mutation)
+
+All policy mutations invalidate the `fingerprintPolicies` query key so the App Router view stays consistent with Cloudflare Worker state.

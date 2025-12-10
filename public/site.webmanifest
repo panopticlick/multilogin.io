@@ -1,0 +1,39 @@
+{
+  "name": "Multilogin.io - Multi-Browser Profile Manager",
+  "short_name": "Multilogin.io",
+  "description": "Free multi-browser profile manager with cloud sync. Manage multiple browser profiles with fingerprint protection, proxy support, and team collaboration.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "utilities",
+    "business"
+  ],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": []
+}
