@@ -4,8 +4,8 @@ import { navigation, siteConfig } from '@/config/site';
 export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/30">
-      <div className="container-wide py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
+      <div className="container-wide py-10">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="col-span-2">
             <Link href="/" className="flex items-center space-x-2">
@@ -25,10 +25,10 @@ export function Footer() {
               </div>
               <span className="font-bold text-lg">{siteConfig.name}</span>
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Free multi-browser profile manager with cloud sync. Built for teams.
+            <p className="mt-3 text-sm text-muted-foreground">
+              Free multi-browser profile manager with cloud sync.
             </p>
-            <div className="mt-6 flex space-x-4">
+            <div className="mt-4 flex space-x-4">
               <a
                 href={siteConfig.links.twitter}
                 target="_blank"
@@ -71,26 +71,9 @@ export function Footer() {
 
           {/* Product */}
           <div>
-            <h3 className="font-semibold mb-4">Product</h3>
-            <ul className="space-y-3">
+            <h3 className="font-semibold mb-3">Product</h3>
+            <ul className="space-y-2">
               {navigation.footer.product.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
-            <ul className="space-y-3">
-              {navigation.footer.resources.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
@@ -105,8 +88,8 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4">Company</h3>
-            <ul className="space-y-3">
+            <h3 className="font-semibold mb-3">Company</h3>
+            <ul className="space-y-2">
               {navigation.footer.company.map((item) => (
                 <li key={item.name}>
                   <Link
@@ -122,8 +105,8 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
-            <ul className="space-y-3">
+            <h3 className="font-semibold mb-3">Legal</h3>
+            <ul className="space-y-2">
               {navigation.footer.legal.map((item) => (
                 <li key={item.name}>
                   <Link
@@ -136,77 +119,25 @@ export function Footer() {
               ))}
             </ul>
           </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.privacy}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Privacy Inquiries
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.support}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Support
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${siteConfig.contact.sales}`}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  Sales
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-6">
-            {/* Trust Badges */}
-            <div className="flex flex-wrap items-center gap-4 md:gap-6">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="font-medium">SOC 2 Compliant</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <svg className="h-4 w-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="font-medium">GDPR Compliant</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <svg className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-                <span className="font-medium">SSL Secure</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="font-medium">{siteConfig.stats.uptime} Uptime</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Built with privacy in mind. Trusted by {siteConfig.stats.users} users.
-            </p>
+        <div className="mt-8 pt-6 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
+            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+          </p>
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span className="flex items-center gap-1">
+              <svg className="h-3.5 w-3.5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              {siteConfig.stats.uptime} Uptime
+            </span>
+            <span className="flex items-center gap-1">
+              <svg className="h-3.5 w-3.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              SSL Secure
+            </span>
           </div>
         </div>
       </div>

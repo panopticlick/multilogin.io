@@ -88,24 +88,16 @@ export const navigation = {
       { name: 'Features', href: '/features' },
       { name: 'Pricing', href: '/pricing' },
       { name: 'Download', href: '/download' },
-      { name: 'Changelog', href: '/changelog' },
-    ],
-    resources: [
-      { name: 'Documentation', href: '/docs' },
-      { name: 'Blog', href: '/blog' },
-      { name: 'API Reference', href: '/docs/api' },
-      { name: 'Status', href: 'https://status.multilogin.io' },
+      { name: 'Docs', href: '/docs' },
     ],
     company: [
       { name: 'About', href: '/about' },
+      { name: 'Blog', href: '/blog' },
       { name: 'Contact', href: '/contact' },
-      { name: 'Careers', href: '/careers' },
-      { name: 'Affiliate', href: '/affiliate' },
     ],
     legal: [
-      { name: 'Privacy Policy', href: '/legal/privacy' },
-      { name: 'Terms of Service', href: '/legal/terms' },
-      { name: 'GDPR', href: '/legal/gdpr' },
+      { name: 'Privacy', href: '/legal/privacy' },
+      { name: 'Terms', href: '/legal/terms' },
     ],
   },
 };
