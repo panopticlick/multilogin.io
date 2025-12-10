@@ -57,13 +57,11 @@ id = "a865c3fe71c643d5a408faa521c3a3b3"
 [observability]
 enabled = true
 
-# Cron Triggers for scheduled tasks
+# Cron Triggers for scheduled tasks (Free tier: max 3 crons)
 [triggers]
 crons = [
-  "*/15 * * * *",  # Every 15 min - Enterprise health checks
-  "*/30 * * * *",  # Every 30 min - Team health checks
-  "0 * * * *",     # Every hour - Pro health checks
-  "0 3 * * *",     # Daily 3 AM - Free health checks + cleanup
+  "0 * * * *",     # Every hour - Health checks
+  "0 3 * * *",     # Daily 3 AM - Cleanup
   "0 9 * * 1",     # Weekly Monday 9 AM - Aging notifications
 ]
 
